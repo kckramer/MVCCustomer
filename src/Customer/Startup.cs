@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MVCCustomer.Entities;
+using Microsoft.EntityFrameworkCore;
+using MVCCustomer.Services;
 
-namespace Customer
+namespace MVCCustomer
 {
     public class Startup
     {
@@ -29,10 +32,16 @@ namespace Customer
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddDbContext<CustomerDbContext>
+                    (options => options.UseSqlServer(Configuration["database:connection"]));
+
+            services.AddSingleton<ICustomerData, CustomerData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+                              ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -53,7 +62,7 @@ namespace Customer
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Customer}/{action=Index}/{id?}");
             });
         }
     }

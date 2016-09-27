@@ -1,0 +1,26 @@
+﻿
+@model  Customer
+@{
+    ViewBag.Title = "Create a customer";
+}
+
+<h1>Create a customer</h1>
+
+@using (Html.BeginForm())
+{
+    <div>
+        First Name: @Html.EditorFor(m => m.FirstName)
+        @Html.ValidationMessageFor(m => m.FirstName)
+        <br />
+        Last Name: @Html.EditorFor(m => m.LastName)
+        @Html.ValidationMessageFor(m => m.LastName)
+        <br />
+        Email Address: @Html.EditorFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email)
+        <br />
+        Favorite Color: @Html.EditorFor(m => m.FavoriteColor)
+    </div>
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+}

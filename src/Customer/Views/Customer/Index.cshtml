@@ -1,0 +1,24 @@
+﻿@model MVCCustomer.ViewModels.CustomerViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h1>Welcome!</h1>
+
+@if (Model.Customers.Any() == false)
+{
+    <h2>No Customers yet. Try adding a customer!</h2>
+}
+else {
+    <h2>Current customers</h2>
+}
+
+@foreach (var customer in Model.Customers)
+{
+    @Html.Partial("_Summary", customer)
+}
+
+<div>
+    <a asp-action="Create">Create a customer</a>
+</div>
