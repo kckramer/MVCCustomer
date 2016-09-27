@@ -1,6 +1,8 @@
 # MVCCustomer
 
-This is a sample MVC core project that uses Entity Framework for persistence and has some validation checking. 
+This is a sample MVC core project that uses Entity Framework for persistence and has some validation checking.
+
+This was coded using Visual Studio 2015 with Web Tools and Sql Server Data Tools extensions installed. 
 
 This requires dotnet core, EF core, and ASP.NET core.  This uses a local sql db.
 
